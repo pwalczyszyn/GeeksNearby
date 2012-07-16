@@ -62,6 +62,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
                                 options.fileKey = 'file';
                                 options.fileName = that.imageURI.substr(that.imageURI.lastIndexOf('/') + 1);
                                 options.mimeType = 'image/jpeg';
+                                options.chunkedMode = false;
                                 options.params = {
                                     headers:{
                                         'X-Parse-Application-Id':'DeE1IIk6SSWxDVAiywycW78jUBA4ZXXT1nZrFfoV',
