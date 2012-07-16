@@ -73,7 +73,13 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
                                 fileTransfer.upload(that.imageURI, 'https://api.parse.com/1/files/' + options.fileName,
                                     function (response) {
 
-                                        user.set('avatar', response);
+                                        var decodedResponse = JSON.parse(decodeURI(response.response));
+                                        console.log(decodedResponse);
+
+                                        user.set('avatar', {
+                                            'name':decodedResponse.name,
+                                            '__type':'File'
+                                        });
                                         user.save(null, {
                                             success:function (user) {
                                                 $.mobile.hidePageLoadingMsg();

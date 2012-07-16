@@ -11,15 +11,20 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'tex
 
         var HomeView = Backbone.View.extend({
 
+            $lstUsersNearby:null,
+
             events:{
-                'click #btnShareMyInfo':'btnShareMyInfo_clickHandler'
+                'click #btnShareMyInfo':'btnShareMyInfo_clickHandler',
+                'click #btnSettings':'btnSettings_clickHandler'
             },
 
             initialize:function (options) {
             },
 
             render:function () {
+
                 this.$el.html(HomeTemplate);
+                this.$lstUsersNearby = this.$('#lstUsersNearby');
 
                 this.findUsersNearby();
 
@@ -46,7 +51,28 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'tex
                         success:function (results) {
                             // results has the list of users with a hometown team with a winning record
 
-                            alert('success ' + results.length);
+                            var items = [];
+
+                            _.each(results, function (item) {
+
+                                var avatarSrc = item.get('avatar') ? item.get('avatar').name : '',
+                                    h3 = item.get('fullName') ? item.get('fullName') : item.get('username'),
+                                    p = '';
+
+                                $item = $('<li>'
+                                    + '<a href="#">'
+                                    + '<img src="' + avatarSrc + '" />'
+                                    + '<h3>' + h3 + '</h3>'
+                                    + '<p>' + p + '</p>'
+                                    + '</a>'
+                                    + '</li>');
+
+                                items.push($item[0]);
+
+                            }, that);
+
+                            that.$lstUsersNearby.html(items).listview('refresh');
+
 
                         }, error:function (error) {
                             alert('error ' + error.message + ' code: ' + error.code);
@@ -88,6 +114,11 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'tex
                     alert('Could\'t obtain your location please try again!');
 
                 });
+            },
+
+            btnSettings_clickHandler:function (event) {
+                Parse.User.logOut();
+                $.mobile.jqmNavigator.popView();
             }
 
 
