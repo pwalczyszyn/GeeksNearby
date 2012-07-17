@@ -6,29 +6,32 @@
  * Time: 10:45 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'text!./HomeView.tpl'],
-    function ($, _, Backbone, Parse, UserLocation, HomeTemplate) {
+define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocation', 'text!./HomeView.tpl'],
+    function ($, _, Backbone, Parse, moment, UserLocation, HomeTemplate) {
 
         var HomeView = Backbone.View.extend({
 
             $lstUsersNearby:null,
 
             events:{
-                'click #btnShareMyInfo':'btnShareMyInfo_clickHandler',
-                'click #btnSettings':'btnSettings_clickHandler'
-            },
-
-            initialize:function (options) {
+                'pageshow':'this_pageshowHandler',
+                'click #btnMyInfo':'btnMyInfo_clickHandler',
+                'click #btnRefresh':'btnRefresh_clickHandler',
+                'click #btnShareMyInfo':'btnShareMyInfo_clickHandler'
             },
 
             render:function () {
-
                 this.$el.html(HomeTemplate);
                 this.$lstUsersNearby = this.$('#lstUsersNearby');
-
-                this.findUsersNearby();
-
                 return this;
+            },
+
+            this_pageshowHandler:function (event) {
+                if (!this.pageShowed) {
+                    this.pageShowed = true;
+
+                    this.findUsersNearby();
+                }
             },
 
             findUsersNearby:function (coords) {
@@ -43,29 +46,29 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'tex
 
                     var locQuery = new Parse.Query(UserLocation);
                     locQuery.near('coords', new Parse.GeoPoint({latitude:coords.latitude, longitude:coords.longitude}));
+                    locQuery.include("user");
 
-                    var userQuery = new Parse.Query(Parse.User);
-                    userQuery.matchesKeyInQuery("objectId", "userId", locQuery);
+                    $.mobile.showPageLoadingMsg('a', 'Loading geeks nearby...');
 
-                    userQuery.find({
+                    locQuery.find({
                         success:function (results) {
-                            // results has the list of users with a hometown team with a winning record
+                            $.mobile.hidePageLoadingMsg();
 
                             var items = [];
 
-                            _.each(results, function (item) {
+                            _.each(results, function (userLocation) {
 
-                                var avatarSrc = item.get('avatar') ? item.get('avatar').name : '',
-                                    h3 = item.get('fullName') ? item.get('fullName') : item.get('username'),
-                                    p = '';
-
-                                $item = $('<li>'
-                                    + '<a href="#">'
-                                    + '<img src="' + avatarSrc + '" />'
-                                    + '<h3>' + h3 + '</h3>'
-                                    + '<p>' + p + '</p>'
-                                    + '</a>'
-                                    + '</li>');
+                                var user = userLocation.get('user'),
+                                    $item = $('<li>'
+                                        + '<a href="#">'
+                                        + '<img src="'
+                                        + (user.get('avatar') ? user.get('avatar').url : 'images/avatar-dark.png')
+                                        + '" />'
+                                        + '<h3>' + user.get('username') + '</h3>'
+                                        + '<p>' + user.get('fullName') + '</p>'
+                                        + '<p class="ui-li-aside">' + moment(userLocation.createdAt).fromNow() + '</p>'
+                                        + '</a>'
+                                        + '</li>').jqmData('user', user);
 
                                 items.push($item[0]);
 
@@ -73,14 +76,16 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'tex
 
                             that.$lstUsersNearby.html(items).listview('refresh');
 
-
                         }, error:function (error) {
+                            $.mobile.hidePageLoadingMsg();
                             alert('error ' + error.message + ' code: ' + error.code);
                         }
                     });
-
-
                 }
+            },
+
+            btnRefresh_clickHandler:function (event) {
+                this.findUsersNearby();
             },
 
             btnShareMyInfo_clickHandler:function (event) {
@@ -94,7 +99,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'tex
                             longitude:position.coords.longitude
                         });
 
-                    userLocation.set('userId', user.id);
+                    userLocation.set('user', user);
                     userLocation.set('coords', coords);
 
                     $.mobile.showPageLoadingMsg('a', 'Saving geo data...');
@@ -116,7 +121,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'tex
                 });
             },
 
-            btnSettings_clickHandler:function (event) {
+            btnMyInfo_clickHandler:function (event) {
                 Parse.User.logOut();
                 $.mobile.jqmNavigator.popView();
             }

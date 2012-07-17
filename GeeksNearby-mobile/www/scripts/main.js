@@ -17,7 +17,8 @@ require.config({
         jqmNavigator:'libs/jquery.mobile/jqmNavigator',
         Parse:'libs/parse/parse-1.0.8',
         appModel:'models/appModel',
-        overthrow:'libs/overthrow/overthrow'
+        overthrow:'libs/overthrow/overthrow',
+        moment:'libs/moment/moment'
     },
     shim:{
         Backbone:{
@@ -35,7 +36,8 @@ require.config({
         },
         overthrow:{
             exports:'overthrow'
-        }
+        },
+        'date.format':{}
     }
 });
 

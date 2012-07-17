@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CCD4C63415B5991000841992 /* Globalization.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD4C63315B5991000841992 /* Globalization.m */; };
 		CCD71D2C15B459FB0036936F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD71D2B15B459FB0036936F /* Foundation.framework */; };
 		CCD71D2E15B459FB0036936F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD71D2D15B459FB0036936F /* UIKit.framework */; };
 		CCD71D3015B459FB0036936F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD71D2F15B459FB0036936F /* CoreGraphics.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CCD4C63215B5991000841992 /* Globalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globalization.h; path = Plugins/Globalization.h; sourceTree = "<group>"; };
+		CCD4C63315B5991000841992 /* Globalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Globalization.m; path = Plugins/Globalization.m; sourceTree = "<group>"; };
 		CCD71D2715B459FB0036936F /* GeeksNearby.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeeksNearby.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCD71D2B15B459FB0036936F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCD71D2D15B459FB0036936F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -256,6 +259,8 @@
 		CCD71D7A15B459FB0036936F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				CCD4C63215B5991000841992 /* Globalization.h */,
+				CCD4C63315B5991000841992 /* Globalization.m */,
 				CCD71D7B15B459FB0036936F /* README */,
 			);
 			name = Plugins;
@@ -361,6 +366,7 @@
 				CCD71D4C15B459FB0036936F /* main.m in Sources */,
 				CCD71D7415B459FB0036936F /* AppDelegate.m in Sources */,
 				CCD71D7715B459FB0036936F /* MainViewController.m in Sources */,
+				CCD4C63415B5991000841992 /* Globalization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,8 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
+		<string>files.parse.com</string>
+		<string>alterapps.nazwa.pl</string>
 		<string>debug.phonegap.com</string>
 		<string>api.parse.com</string>
 	</array>
@@ -59,6 +61,8 @@
 		<string>CDVSplashScreen</string>
 		<key>Battery</key>
 		<string>CDVBattery</string>
+		<key>Globalization</key>
+		<string>Globalization</string>
 	</dict>
 </dict>
 </plist>

@@ -62,7 +62,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
                                 options.fileKey = 'file';
                                 options.fileName = that.imageURI.substr(that.imageURI.lastIndexOf('/') + 1);
                                 options.mimeType = 'image/jpeg';
-                                options.chunkedMode = false;
+
                                 options.params = {
                                     headers:{
                                         'X-Parse-Application-Id':'DeE1IIk6SSWxDVAiywycW78jUBA4ZXXT1nZrFfoV',
@@ -71,11 +71,10 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
                                 };
 
                                 var fileTransfer = new FileTransfer();
-                                fileTransfer.upload(that.imageURI, 'https://api.parse.com/1/files/' + options.fileName,
+                                fileTransfer.upload(that.imageURI, 'http://alterapps.nazwa.pl/api.geeksnearby.com/upload.php',
                                     function (response) {
 
                                         var decodedResponse = JSON.parse(decodeURI(response.response));
-                                        console.log(decodedResponse);
 
                                         user.set('avatar', {
                                             'name':decodedResponse.name,

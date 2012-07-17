@@ -8,7 +8,7 @@
 
     <div style="display: inline-block; width: 90px">
         <div id="btnAddPhoto">
-            Tap to add
+            <img src="images/avatar-light.png"/>
         </div>
     </div>
 
