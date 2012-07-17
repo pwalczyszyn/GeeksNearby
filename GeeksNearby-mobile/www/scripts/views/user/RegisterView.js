@@ -39,7 +39,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
 
                         user = new Parse.User();
 
-                    user.set("username", $username.val().trim());
+                    user.set("username", $username.val().trim().toLocaleString());
                     user.set("password", $password.val());
                     user.set("email1", $email.val().trim());
                     user.set("fullName", $fullName.val().trim());

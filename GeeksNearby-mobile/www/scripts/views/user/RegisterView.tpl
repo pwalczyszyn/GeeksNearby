@@ -19,11 +19,21 @@
 
     <br/>
 
-    <input type="text" id="txtFullName" placeholder="Full Name (optional)"/>
-    <input type="text" id="txtEmail" placeholder="Email (optional)"/>
-    <input type="text" id="txtCompany" placeholder="Company (optional)"/>
-    <input type="text" id="txtTel" placeholder="Tel (optional)"/>
+    <div data-role="collapsible-set">
+        <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-mini="true"
+             data-content-theme="c">
+            <h3>Basic</h3>
 
+            <input type="text" id="txtFullName" placeholder="Full Name (optional)"/>
+            <input type="text" id="txtEmail" placeholder="Email (optional)"/>
+            <input type="text" id="txtCompany" placeholder="Company (optional)"/>
+            <input type="text" id="txtTel" placeholder="Tel (optional)"/>
+        </div>
+        <div data-role="collapsible" data-iconpos="right" data-mini="true" data-content-theme="c">
+            <h3>Social</h3>
+            <input type="text" id="txtTwitter" placeholder="Twitter handle"/>
+        </div>
+    </div>
     <br/>
 
     <button id="btnRegister" data-theme="b">Register</button>

@@ -13,6 +13,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', './RegisterView', 'views/ho
 
             events:{
                 'pageshow':'this_pageshowHandler',
+                'pagehide':'this_pagehideHandler',
                 'click #btnLogIn':'btnLogIn_clickHandler',
                 'click #btnRegister':'btnRegister_clickHandler'
             },
@@ -23,12 +24,12 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', './RegisterView', 'views/ho
             },
 
             btnLogIn_clickHandler:function (event) {
-                var email = this.$('#txtUsername').val(),
+                var username = this.$('#txtUsername').val().toLocaleString(),
                     password = this.$('#txtPassword').val();
 
                 $.mobile.showPageLoadingMsg('a', 'Authenticating...');
 
-                Parse.User.logIn(email, password, {
+                Parse.User.logIn(username, password, {
                     success:function (user) {
                         $.mobile.jqmNavigator.pushView(new HomeView());
                     },
@@ -61,6 +62,11 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', './RegisterView', 'views/ho
                         }
                     });
                 }
+            },
+
+            this_pagehideHandler:function (event) {
+                this.$('#txtUsername').val('');
+                this.$('#txtPassword').val('');
             }
         });
 

@@ -6,8 +6,9 @@
  * Time: 10:45 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocation', 'text!./HomeView.tpl'],
-    function ($, _, Backbone, Parse, moment, UserLocation, HomeTemplate) {
+define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocation', 'views/user/SettingsView',
+        'text!./HomeView.tpl'],
+    function ($, _, Backbone, Parse, moment, UserLocation, SettingsView, HomeTemplate) {
 
         var HomeView = Backbone.View.extend({
 
@@ -15,7 +16,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
 
             events:{
                 'pageshow':'this_pageshowHandler',
-                'click #btnMyInfo':'btnMyInfo_clickHandler',
+                'click #btnSettings':'btnSettings_clickHandler',
                 'click #btnRefresh':'btnRefresh_clickHandler',
                 'click #btnShareMyInfo':'btnShareMyInfo_clickHandler'
             },
@@ -121,9 +122,8 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                 });
             },
 
-            btnMyInfo_clickHandler:function (event) {
-                Parse.User.logOut();
-                $.mobile.jqmNavigator.popView();
+            btnSettings_clickHandler:function (event) {
+                $.mobile.jqmNavigator.pushView(new SettingsView());
             }
 
 

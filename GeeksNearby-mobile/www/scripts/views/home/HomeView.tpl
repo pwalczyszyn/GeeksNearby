@@ -1,8 +1,8 @@
-<div data-role="header" class="absolute">
-    <a id="btnRefresh" href="#" data-icon="refresh">Refresh</a>
+<div data-role="header" class="absolute" data-id="headerBar" data-position="fixed">
+    <a id="btnRefresh" href="#" data-icon="refresh" data-iconpos="notext"></a>
 
     <h1>Geeks Nearby</h1>
-    <a id="btnMyInfo" href="#" data-icon="info">My Info</a>
+    <a id="btnSettings" href="#" data-icon="gear" data-iconpos="notext"></a>
 </div>
 
 <div data-role="content" class="absolute overthrow">
