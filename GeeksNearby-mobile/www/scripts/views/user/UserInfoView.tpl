@@ -1,5 +1,5 @@
 <div data-role="header" class="absolute">
-    <a id="btnBack" href="#" data-icon="back" data-iconpos="notext">Back</a>
+    <a class="btnBack" href="#" data-icon="back">Back</a>
 
     <h1>User Info</h1>
 </div>
@@ -73,11 +73,13 @@
                 </div>
             </div>
 
+            <% if (user.has('website') && user.get('website') !== '') { %>
             <br/>
 
             <p>
                 <strong>Website/Blog: </strong> <a href="<%= user.escape('website') %>" target="_blank"><%=user.escape('website')%></a>
             </p>
+            <% } %>
 
         </div>
 

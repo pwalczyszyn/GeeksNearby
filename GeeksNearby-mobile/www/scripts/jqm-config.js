@@ -11,7 +11,7 @@ define(['jquery'], function ($) {
 
         $.mobile.pageContainer = $('#container');
         $.mobile.loadingMessageTextVisible = true;
-        $.mobile.buttonMarkup.hoverDelay = 100;
+        $.mobile.buttonMarkup.hoverDelay = 50;
 
         if (navigator.userAgent.match(/Android/))
             $.mobile.defaultPageTransition = 'none'; // For some reason slide is not very fast on Android

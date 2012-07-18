@@ -1,4 +1,4 @@
-<div data-role="header" class="absolute" data-id="headerBar" data-position="fixed">
+<div data-role="header" class="absolute">
     <a id="btnRefresh" href="#" data-icon="refresh" data-iconpos="notext"></a>
 
     <h1>GeeksNearby</h1>

@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'Backbone', 'text!./UserInfoView.tpl'],
         var UserInfoView = Backbone.View.extend({
 
             events:{
-                'click #btnBack':'btnBack_clickHandler',
+                'click a.btnBack':'btnBack_clickHandler',
                 'click #btnAddToContacts':'btnAddToContacts_clickHandler'
             },
 
@@ -22,6 +22,7 @@ define(['jquery', 'underscore', 'Backbone', 'text!./UserInfoView.tpl'],
             },
 
             btnBack_clickHandler:function (event) {
+                console.log('UserInfoView.btnBack_clickHandler()');
                 $.mobile.jqmNavigator.popView();
             },
 
@@ -89,7 +90,7 @@ define(['jquery', 'underscore', 'Backbone', 'text!./UserInfoView.tpl'],
                 var contact = navigator.contacts.create(contactProps);
                 contact.save();
 
-                console.log('Contact saved!');
+                alert('Contact saved!');
 
             }
         });

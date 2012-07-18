@@ -43,7 +43,6 @@ require.config({
 
 require(['domReady', 'Parse', 'views/user/LoginView', 'jqm', 'overthrow'],
     function (domReady, Parse, LoginView) {
-
         domReady(function () {
 
             function onDeviceReady() {
@@ -57,6 +56,5 @@ require(['domReady', 'Parse', 'views/user/LoginView', 'jqm', 'overthrow'],
                 onDeviceReady();
 
         });
-
     }
 );

@@ -9,7 +9,16 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>iphone.png</string>
+	<string>Icon.png</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>iphone.png</string>
+		<string>iphone@2x.png</string>
+		<string>icon-72.png</string>
+		<string>icon-72@2x.png</string>
+		<string>Icon.png</string>
+		<string>Icon@2x.png</string>
+	</array>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
@@ -20,9 +29,9 @@
 				<string>iphone@2x.png</string>
 				<string>icon-72.png</string>
 				<string>icon-72@2x.png</string>
+				<string>Icon.png</string>
+				<string>Icon@2x.png</string>
 			</array>
-			<key>UIPrerenderedIcon</key>
-			<false/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
@@ -46,6 +55,7 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

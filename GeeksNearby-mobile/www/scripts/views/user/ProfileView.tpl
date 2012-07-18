@@ -1,5 +1,5 @@
-<div data-role="header" class="absolute" data-id="headerBar" data-position="fixed">
-    <a id="btnBack" href="#" data-icon="back" data-iconpos="notext">Back</a>
+<div data-role="header" class="absolute">
+    <a id="btnBack" href="#" data-icon="back">Back</a>
 
     <h1>Geeky Info</h1>
 
@@ -10,7 +10,8 @@
 
     <div style="display: inline-block; width: 90px">
         <div id="btnAddPhoto">
-            <img id="imgAvatar" src="<% if (user.has('avatar')) { %><%= user.get('avatar').url %> <% } else { %>images/avatar-light.png<% } %>"/>
+            <img id="imgAvatar"
+                 src="<% if (user.has('avatar')) { %><%= user.get('avatar').url %> <% } else { %>images/avatar-light.png<% } %>"/>
         </div>
     </div>
 
@@ -54,9 +55,9 @@
         </div>
     </div>
 
+    <!--
     <br/>
-
     <button id="btnDeleteAccount" data-theme="r">Delete Geek Account</button>
-
+    -->
 </div>
 
