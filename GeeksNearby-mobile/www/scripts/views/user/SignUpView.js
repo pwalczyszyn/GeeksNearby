@@ -11,7 +11,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
 
         var RegisterView = Backbone.View.extend({
 
-            $avatarImg:null,
+            $imgAvatar:null,
 
             events:{
                 'click #btnLogIn':'btnLogIn_clickHandler',
@@ -27,6 +27,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
 
             render:function () {
                 this.$el.html(RegisterTemplate);
+                this.$imgAvatar = this.$('#imgAvatar');
                 return this;
             },
 
@@ -38,6 +39,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
                 if ($username.val().trim() != '' && $password.val() != '') {
 
                     var that = this,
+                        $description = this.$('#txtDescription'),
                         $fullName = this.$('#txtFullName'),
                         $email = this.$('#txtEmail'),
                         $company = this.$('#txtCompany'),
@@ -50,6 +52,8 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
 
                     user.set("username", $username.val().trim().toLowerCase());
                     user.set("password", $password.val());
+
+                    user.set('description', $description.val().trim());
 
                     // Basic info
                     user.set("emailAddress", $email.val().trim());
@@ -87,7 +91,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
                                 };
 
                                 var fileTransfer = new FileTransfer();
-                                fileTransfer.upload(that.imageURI, 'http://api.geeksnearby.com/upload',
+                                fileTransfer.upload(that.imageURI, 'http://api.geeksnearby.com/upload.php',
                                     function (response) {
 
                                         var decodedResponse = JSON.parse(decodeURI(response.response));
@@ -147,13 +151,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
                 navigator.camera.getPicture(
                     function (imageURI) {
                         that.imageURI = imageURI;
-
-                        if (!that.$avatarImg) {
-                            that.$avatarImg = $('<img />');
-                            that.$('#btnAddPhoto').html(that.$avatarImg);
-                        }
-                        that.$avatarImg.attr('src', imageURI);
-
+                        that.$imgAvatar.attr('src', imageURI);
                     },
                     function (message) {
                         console.log('Get picture failed ' + message);

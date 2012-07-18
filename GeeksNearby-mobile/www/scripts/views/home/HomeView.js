@@ -6,9 +6,9 @@
  * Time: 10:45 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocation', 'views/user/SettingsView',
+define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocation', 'views/user/ProfileView',
         'text!./HomeView.tpl'],
-    function ($, _, Backbone, Parse, moment, UserLocation, SettingsView, HomeTemplate) {
+    function ($, _, Backbone, Parse, moment, UserLocation, ProfileView, HomeTemplate) {
 
         var HomeView = Backbone.View.extend({
 
@@ -65,8 +65,8 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                                         + '<img src="'
                                         + (user.get('avatar') ? user.get('avatar').url : 'images/avatar-dark.png')
                                         + '" />'
-                                        + '<h3>' + user.get('username') + '</h3>'
-                                        + '<p>' + user.get('fullName') + '</p>'
+                                        + '<h3>' + user.escape('username') + '</h3>'
+                                        + '<p>' + user.escape('fullName') + '</p>'
                                         + '<p class="ui-li-aside">' + moment(userLocation.createdAt).fromNow() + '</p>'
                                         + '</a>'
                                         + '</li>').jqmData('user', user);
@@ -123,7 +123,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
             },
 
             btnSettings_clickHandler:function (event) {
-                $.mobile.jqmNavigator.pushView(new SettingsView());
+                $.mobile.jqmNavigator.pushView(new ProfileView(), {dataUrl:'fakeUrl'});
             }
 
 

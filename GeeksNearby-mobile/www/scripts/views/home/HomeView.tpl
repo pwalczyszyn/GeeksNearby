@@ -5,7 +5,7 @@
     <a id="btnSettings" href="#" data-icon="gear" data-iconpos="notext"></a>
 </div>
 
-<div data-role="content" class="absolute overthrow">
+<div data-role="content" class="absolute overthrow with-bottom-bar">
     <li id="lstUsersNearby" data-role="listview" class="overthrow-content"/>
 </div>
 

@@ -1,5 +1,6 @@
 <div data-role="header" class="absolute">
     <a id="btnLogIn" href="#" data-icon="back" data-iconpos="notext">Log In</a>
+
     <h1>Sign Up</h1>
 </div>
 
@@ -7,7 +8,7 @@
 
     <div style="display: inline-block; width: 90px">
         <div id="btnAddPhoto">
-            <img src="images/avatar-light.png"/>
+            <img id="imgAvatar" src="images/avatar-light.png"/>
         </div>
     </div>
 
