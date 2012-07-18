@@ -10,7 +10,7 @@
 
     <div style="display: inline-block; width: 90px">
         <div id="btnAddPhoto">
-            <img src="<% if (avatar) { %><%= avatar.url %> <% } else { %>images/avatar-light.png<% } %>"/>
+            <img src="<% if (typeof avatar !== 'undefined') { %><%= avatar.url %> <% } else { %>images/avatar-light.png<% } %>"/>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
     <br/>
 
     <input type="text" id="txtFullName" placeholder="Full Name (optional)" value="<%= fullName %>"/>
-    <input type="text" id="txtEmail" placeholder="Email (optional)" value="<%= email1 %>"/>
+    <input type="text" id="txtEmail" placeholder="Email (optional)" value="<%= emailAddress %>"/>
     <input type="text" id="txtCompany" placeholder="Company (optional)" value="<%= company %>"/>
     <input type="text" id="txtTel" placeholder="Tel (optional)" value="<%= tel %>"/>
 

@@ -6,7 +6,7 @@
  * Time: 11:06 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
+define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
     function ($, _, Backbone, Parse, RegisterTemplate) {
 
         var RegisterView = Backbone.View.extend({
@@ -15,8 +15,14 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
 
             events:{
                 'click #btnLogIn':'btnLogIn_clickHandler',
-                'click #btnRegister':'btnRegister_clickHandler',
-                'click #btnAddPhoto':'btnAddPhoto_clickHandler'
+                'click #btnSignUp':'btnSignUp_clickHandler',
+                'click #btnAddPhoto':'btnAddPhoto_clickHandler',
+                'focus #txtFacebook':'socialLinks_focusHandler',
+                'focus #txtLinkedIn':'socialLinks_focusHandler',
+                'focus #txtTwitter':'txtTwitter_focusHandler',
+                'blur #txtTwitter':'txtTwitter_blurHandler',
+                'focus #txtWebsite':'txtWebsite_focusHandler',
+                'blur #txtWebsite':'txtWebsite_blurHandler'
             },
 
             render:function () {
@@ -24,7 +30,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
                 return this;
             },
 
-            btnRegister_clickHandler:function (event) {
+            btnSignUp_clickHandler:function (event) {
 
                 var $username = this.$('#txtUsername'),
                     $password = this.$('#txtPassword');
@@ -36,22 +42,32 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
                         $email = this.$('#txtEmail'),
                         $company = this.$('#txtCompany'),
                         $tel = this.$('#txtTel'),
-
+                        $twitter = this.$('#txtTwitter'),
+                        $facebook = this.$('#txtFacebook'),
+                        $linkedIn = this.$('#txtLinkedIn'),
+                        $website = this.$('#txtWebsite'),
                         user = new Parse.User();
 
-                    user.set("username", $username.val().trim().toLocaleString());
+                    user.set("username", $username.val().trim().toLowerCase());
                     user.set("password", $password.val());
-                    user.set("email1", $email.val().trim());
+
+                    // Basic info
+                    user.set("emailAddress", $email.val().trim());
                     user.set("fullName", $fullName.val().trim());
                     user.set("company", $company.val().trim());
                     user.set("tel", $tel.val().trim());
+
+                    // Social info
+                    user.set("twitter", $twitter.val().trim());
+                    user.set("facebook", $facebook.val() !== 'http://facebook.com/you' ? $facebook.val().trim() : '');
+                    user.set("linkedIn", $linkedIn.val() !== 'http://linkedin.com/in/you' ? $linkedIn.val().trim() : '');
+                    user.set("website", $website.val().trim());
 
                     $.mobile.showPageLoadingMsg('a', 'Registering...');
 
                     user.signUp(null, {
                         success:function (user) {
 
-                            console.log('User registered!');
                             $.mobile.hidePageLoadingMsg();
 
                             if (that.imageURI) {
@@ -71,7 +87,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
                                 };
 
                                 var fileTransfer = new FileTransfer();
-                                fileTransfer.upload(that.imageURI, 'http://alterapps.nazwa.pl/api.geeksnearby.com/upload.php',
+                                fileTransfer.upload(that.imageURI, 'http://api.geeksnearby.com/upload',
                                     function (response) {
 
                                         var decodedResponse = JSON.parse(decodeURI(response.response));
@@ -123,7 +139,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
             },
 
             btnLogIn_clickHandler:function (event) {
-                $.mobile.jqmNavigator.popView();
+                $.mobile.jqmNavigator.popView({reverse:false});
             },
 
             btnAddPhoto_clickHandler:function (event) {
@@ -145,15 +161,59 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./RegisterView.tpl'],
                     {
                         quality:50,
                         allowEdit:true,
-                        targetWidth:80,
-                        targetHeight:80,
-                        saveToPhotoAlbum:true,
+                        targetWidth:160,
+                        targetHeight:160,
+//                        saveToPhotoAlbum:true,
                         correctOrientation:true,
                         encodingType:navigator.camera.EncodingType.JPEG,
                         destinationType:navigator.camera.DestinationType.FILE_URI,
                         MediaType:navigator.camera.MediaType.PICTURE
                     }
                 );
+            },
+
+            socialLinks_focusHandler:function (event) {
+                var field = event.currentTarget,
+                    $field = $(field),
+                    start = $field.val().lastIndexOf('/') + 1,
+                    end = $field.val().length;
+
+                _.defer(function () {
+                    if (start != -1) {
+                        if (field.createTextRange) {
+                            var selRange = field.createTextRange();
+                            selRange.collapse(true);
+                            selRange.moveStart('character', start);
+                            selRange.moveEnd('character', end);
+                            selRange.select();
+                        } else if (field.setSelectionRange) {
+                            field.setSelectionRange(start, end);
+                        } else if (field.selectionStart) {
+                            field.selectionStart = start;
+                            field.selectionEnd = end;
+                        }
+                    }
+                });
+            },
+
+            txtTwitter_focusHandler:function (event) {
+                var $field = $(event.currentTarget);
+                if ($field.val() === '') $field.val('@');
+            },
+
+            txtTwitter_blurHandler:function (event) {
+                var $field = $(event.currentTarget);
+                if ($field.val() === '@') $field.val(null);
+            },
+
+            txtWebsite_focusHandler:function (event) {
+                var $field = $(event.currentTarget);
+                if ($field.val() === '') $field.val('http://');
+            },
+
+            txtWebsite_blurHandler:function (event) {
+                var $field = $(event.currentTarget);
+                if ($field.val() === 'http://') $field.val(null);
             }
         });
 

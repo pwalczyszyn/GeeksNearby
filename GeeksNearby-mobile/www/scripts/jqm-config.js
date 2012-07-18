@@ -10,9 +10,13 @@ define(['jquery'], function ($) {
     $(document).one("mobileinit", function () {
 
         $.mobile.pageContainer = $('#container');
-        $.mobile.defaultPageTransition = 'slide';
         $.mobile.loadingMessageTextVisible = true;
-        $.mobile.buttonMarkup.hoverDelay = 30;
+        $.mobile.buttonMarkup.hoverDelay = 100;
+
+        if (navigator.userAgent.match(/Android/))
+            $.mobile.defaultPageTransition = 'fade'; // For some reason slide is not very fast on Android
+        else
+            $.mobile.defaultPageTransition = 'slide';
 
     });
 });

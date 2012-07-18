@@ -1,7 +1,7 @@
 <div data-role="header" class="absolute" data-id="headerBar" data-position="fixed">
     <a id="btnRefresh" href="#" data-icon="refresh" data-iconpos="notext"></a>
 
-    <h1>Geeks Nearby</h1>
+    <h1>GeeksNearby</h1>
     <a id="btnSettings" href="#" data-icon="gear" data-iconpos="notext"></a>
 </div>
 

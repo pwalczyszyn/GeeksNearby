@@ -24,10 +24,10 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
-		<string>files.parse.com</string>
-		<string>alterapps.nazwa.pl</string>
-		<string>debug.phonegap.com</string>
 		<string>api.parse.com</string>
+		<string>files.parse.com</string>
+		<string>api.geeksnearby.com</string>
+		<string>debug.phonegap.com</string>
 	</array>
 	<key>Plugins</key>
 	<dict>

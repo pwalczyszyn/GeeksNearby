@@ -1,5 +1,6 @@
 <div data-role="header" class="absolute">
-    <h1>Log In</h1>
+    <h1>GeeksNearby</h1>
+    <a id="btnSignUp" data-theme="b" class="ui-btn-right">Sign Up</a>
 </div>
 
 <div data-role="content" class="absolute">
@@ -9,14 +10,5 @@
 
     <br/>
 
-    <button id="btnLogIn" data-theme="b">Log In</button>
-
-    <br/>
-    <br/>
-
-    <p style="text-align: center">
-        <a id="btnRegister" href="#">Register</a>
-    </p>
-
+    <button id="btnLogIn" data-theme="g">Log In</button>
 </div>
-

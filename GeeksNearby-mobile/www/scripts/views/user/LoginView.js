@@ -6,8 +6,8 @@
  * Time: 11:43 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'Parse', './RegisterView', 'views/home/HomeView', 'text!./LoginView.tpl'],
-    function ($, _, Backbone, Parse, RegisterView, HomeView, LoginTemplate) {
+define(['jquery', 'underscore', 'Backbone', 'Parse', './SignUpView', 'views/home/HomeView', 'text!./LoginView.tpl'],
+    function ($, _, Backbone, Parse, SignUpView, HomeView, LoginTemplate) {
 
         var LoginView = Backbone.View.extend({
 
@@ -15,7 +15,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', './RegisterView', 'views/ho
                 'pageshow':'this_pageshowHandler',
                 'pagehide':'this_pagehideHandler',
                 'click #btnLogIn':'btnLogIn_clickHandler',
-                'click #btnRegister':'btnRegister_clickHandler'
+                'click #btnSignUp':'btnSignUp_clickHandler'
             },
 
             render:function () {
@@ -24,7 +24,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', './RegisterView', 'views/ho
             },
 
             btnLogIn_clickHandler:function (event) {
-                var username = this.$('#txtUsername').val().toLocaleString(),
+                var username = this.$('#txtUsername').val().toLowerCase(),
                     password = this.$('#txtPassword').val();
 
                 $.mobile.showPageLoadingMsg('a', 'Authenticating...');
@@ -38,20 +38,16 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', './RegisterView', 'views/ho
                         alert('Wrong email or password!');
                     }
                 });
-
             },
 
-            btnRegister_clickHandler:function (event) {
-                $.mobile.jqmNavigator.pushView(new RegisterView());
+            btnSignUp_clickHandler:function (event) {
+                $.mobile.jqmNavigator.pushView(new SignUpView(), {reverse:true});
             },
 
             this_pageshowHandler:function () {
-
                 var user = Parse.User.current();
                 if (user) {
-
                     $.mobile.showPageLoadingMsg('a', 'Authenticating...');
-
                     user.fetch({
                         success:function (user) {
                             $.mobile.jqmNavigator.pushView(new HomeView());
