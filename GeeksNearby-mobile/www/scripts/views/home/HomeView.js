@@ -7,8 +7,8 @@
  */
 
 define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocation', 'views/user/ProfileView',
-        'text!./HomeView.tpl'],
-    function ($, _, Backbone, Parse, moment, UserLocation, ProfileView, HomeTemplate) {
+        'views/user/UserInfoView', 'text!./HomeView.tpl'],
+    function ($, _, Backbone, Parse, moment, UserLocation, ProfileView, UserInfoView, HomeTemplate) {
 
         var HomeView = Backbone.View.extend({
 
@@ -18,7 +18,8 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                 'pageshow':'this_pageshowHandler',
                 'click #btnSettings':'btnSettings_clickHandler',
                 'click #btnRefresh':'btnRefresh_clickHandler',
-                'click #btnShareMyInfo':'btnShareMyInfo_clickHandler'
+                'click #btnShareMyInfo':'btnShareMyInfo_clickHandler',
+                'click #lstUsersNearby li':'lstUsersNearbyLi_clickHandler'
             },
 
             render:function () {
@@ -48,6 +49,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                     var locQuery = new Parse.Query(UserLocation);
                     locQuery.near('coords', new Parse.GeoPoint({latitude:coords.latitude, longitude:coords.longitude}));
                     locQuery.include("user");
+                    locQuery.descending("createdAt");
 
                     $.mobile.showPageLoadingMsg('a', 'Loading geeks nearby...');
 
@@ -100,6 +102,10 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                             longitude:position.coords.longitude
                         });
 
+                    var locACL = new Parse.ACL(user);
+                    locACL.setPublicReadAccess(true);
+                    userLocation.setACL(locACL);
+
                     userLocation.set('user', user);
                     userLocation.set('coords', coords);
 
@@ -124,8 +130,12 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
 
             btnSettings_clickHandler:function (event) {
                 $.mobile.jqmNavigator.pushView(new ProfileView(), {dataUrl:'fakeUrl'});
-            }
+            },
 
+            lstUsersNearbyLi_clickHandler:function (event) {
+                var user = $(event.currentTarget).jqmData('user');
+                $.mobile.jqmNavigator.pushView(new UserInfoView({model:user}));
+            }
 
         });
 

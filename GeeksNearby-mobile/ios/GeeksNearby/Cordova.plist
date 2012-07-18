@@ -13,7 +13,7 @@
 	<key>AutoHideSplashScreen</key>
 	<true/>
 	<key>ShowSplashScreenSpinner</key>
-	<true/>
+	<false/>
 	<key>MediaPlaybackRequiresUserAction</key>
 	<false/>
 	<key>AllowInlineMediaPlayback</key>
@@ -24,6 +24,9 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
+		<string>linkedin.com</string>
+		<string>facebook.com</string>
+		<string>twitter.com</string>
 		<string>api.parse.com</string>
 		<string>files.parse.com</string>
 		<string>api.geeksnearby.com</string>

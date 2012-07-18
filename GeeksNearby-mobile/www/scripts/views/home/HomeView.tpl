@@ -6,7 +6,7 @@
 </div>
 
 <div data-role="content" class="absolute overthrow with-bottom-bar">
-    <li id="lstUsersNearby" data-role="listview" class="overthrow-content"/>
+    <ul id="lstUsersNearby" data-role="listview" class="overthrow-content"/>
 </div>
 
 <div data-role="footer" style="padding: 10px" class="absolute">

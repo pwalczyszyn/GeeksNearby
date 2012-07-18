@@ -61,6 +61,9 @@
  */
 - (BOOL) application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {    
+    // Remove me after debugging
+    [NSClassFromString(@"WebView") _enableRemoteInspector];
+
     NSURL* url = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
     NSString* invokeString = nil;
     

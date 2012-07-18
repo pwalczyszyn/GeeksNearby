@@ -14,7 +14,7 @@ define(['jquery'], function ($) {
         $.mobile.buttonMarkup.hoverDelay = 100;
 
         if (navigator.userAgent.match(/Android/))
-            $.mobile.defaultPageTransition = 'fade'; // For some reason slide is not very fast on Android
+            $.mobile.defaultPageTransition = 'none'; // For some reason slide is not very fast on Android
         else
             $.mobile.defaultPageTransition = 'slide';
 
