@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CCD71D2615B459FB0036936F"
+               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "GeeksNearby.app"
                BlueprintName = "GeeksNearby"
                ReferencedContainer = "container:GeeksNearby.xcodeproj">
@@ -31,7 +31,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CCD71D2615B459FB0036936F"
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "GeeksNearby.app"
             BlueprintName = "GeeksNearby"
             ReferencedContainer = "container:GeeksNearby.xcodeproj">
@@ -50,7 +50,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CCD71D2615B459FB0036936F"
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "GeeksNearby.app"
             BlueprintName = "GeeksNearby"
             ReferencedContainer = "container:GeeksNearby.xcodeproj">
@@ -68,7 +68,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CCD71D2615B459FB0036936F"
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "GeeksNearby.app"
             BlueprintName = "GeeksNearby"
             ReferencedContainer = "container:GeeksNearby.xcodeproj">

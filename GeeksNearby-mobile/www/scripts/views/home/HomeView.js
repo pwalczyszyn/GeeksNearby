@@ -16,7 +16,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
 
             events:{
                 'pageshow':'this_pageshowHandler',
-                'click #btnSettings':'btnSettings_clickHandler',
+                'click #btnProfile':'btnProfile_clickHandler',
                 'click #btnRefresh':'btnRefresh_clickHandler',
                 'click #btnShareMyInfo':'btnShareMyInfo_clickHandler',
                 'click #lstUsersNearby li':'lstUsersNearbyLi_clickHandler'
@@ -42,12 +42,16 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                     navigator.geolocation.getCurrentPosition(function (position) {
                         that.findUsersNearby(position.coords);
                     }, function (error) {
-                        alert('Could\'t obtain your location please try again!');
+                        navigator.notification.alert('Could\'t obtain your location please try again!', null, 'Error');
                     });
                 } else {
 
                     var locQuery = new Parse.Query(UserLocation);
-                    locQuery.near('coords', new Parse.GeoPoint({latitude:coords.latitude, longitude:coords.longitude}));
+                    locQuery.withinKilometers('coords',
+                        new Parse.GeoPoint({latitude:coords.latitude, longitude:coords.longitude}),
+                        0.05 // 50 meters range
+                    );
+
                     locQuery.include("user");
                     locQuery.descending("createdAt");
 
@@ -61,8 +65,9 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
 
                             _.each(results, function (userLocation) {
 
-                                var user = userLocation.get('user'),
-                                    $item = $('<li>'
+                                var user = userLocation.get('user');
+                                if (user) {
+                                    var $item = $('<li>'
                                         + '<a href="#">'
                                         + '<img src="'
                                         + (user.get('avatar') ? user.get('avatar').url : 'images/avatar-dark.png')
@@ -73,7 +78,8 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                                         + '</a>'
                                         + '</li>').jqmData('user', user);
 
-                                items.push($item[0]);
+                                    items.push($item[0]);
+                                }
 
                             }, that);
 
@@ -81,7 +87,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
 
                         }, error:function (error) {
                             $.mobile.hidePageLoadingMsg();
-                            alert('error ' + error.message + ' code: ' + error.code);
+                            navigator.notification.alert('error ' + error.message + ' code: ' + error.code, null, 'Error');
                         }
                     });
                 }
@@ -117,18 +123,22 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                         },
                         error:function (userLocation, error) {
                             $.mobile.hidePageLoadingMsg();
-                            alert('Could\'t store your current location: ' + error.message + ' code: ' + error.code);
+                            navigator.notification.alert(
+                                'Could\'t store your current location: ' + error.message + ' code: ' + error.code,
+                                null,
+                                'Error'
+                            );
                         }
                     });
 
                 }, function (error) {
 
-                    alert('Could\'t obtain your location please try again!');
+                    navigator.notification.alert('Could\'t obtain your location please try again!', null, 'Error');
 
                 });
             },
 
-            btnSettings_clickHandler:function (event) {
+            btnProfile_clickHandler:function (event) {
                 $.mobile.jqmNavigator.pushView(new ProfileView(), {dataUrl:'fakeUrl'});
             },
 

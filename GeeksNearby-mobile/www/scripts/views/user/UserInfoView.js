@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'Backbone', 'text!./UserInfoView.tpl'],
         var UserInfoView = Backbone.View.extend({
 
             events:{
-                'click a.btnBack':'btnBack_clickHandler',
+                'click #btnBack':'btnBack_clickHandler',
                 'click #btnAddToContacts':'btnAddToContacts_clickHandler'
             },
 
@@ -90,7 +90,7 @@ define(['jquery', 'underscore', 'Backbone', 'text!./UserInfoView.tpl'],
                 var contact = navigator.contacts.create(contactProps);
                 contact.save();
 
-                alert('Contact saved!');
+                navigator.notification.alert('Contact added!', null, 'Info');
 
             }
         });

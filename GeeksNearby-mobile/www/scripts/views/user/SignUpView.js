@@ -122,7 +122,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
 
                                         $.mobile.hidePageLoadingMsg();
 
-                                        alert('Avatar upload failed ' + error);
+                                        navigator.notification.alert('Avatar upload failed ' + error, null, 'Error');
 
                                     }, options);
 
@@ -133,12 +133,12 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
                         error:function (user, error) {
                             $.mobile.hidePageLoadingMsg();
                             // Show the error message somewhere and let the user try again.
-                            alert("Error: " + error.code + " " + error.message);
+                            navigator.notification.alert("Error: " + error.code + " " + error.message, null, 'Error');
                         }
                     });
 
                 } else {
-                    alert('Login and password a required!');
+                    navigator.notification.alert('Login and password a required!', null, 'Error');
                 }
             },
 

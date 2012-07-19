@@ -35,7 +35,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', './SignUpView', 'views/home
                     },
                     error:function (user, error) {
                         $.mobile.hidePageLoadingMsg();
-                        alert('Wrong email or password!');
+                        navigator.notification.alert('Wrong email or password!', null, 'Warning');
                     }
                 });
             },
@@ -54,7 +54,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', './SignUpView', 'views/home
                         },
                         error:function (user, error) {
                             $.mobile.hidePageLoadingMsg();
-                            alert('Login failed!');
+                            navigator.notification.alert('Login failed!', null, 'Warning');
                         }
                     });
                 }

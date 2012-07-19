@@ -21,8 +21,8 @@
 //  AppDelegate.m
 //  GeeksNearby
 //
-//  Created by Piotr Walczyszyn on 7/16/12.
-//  Copyright pwalczys@adobe.com 2012. All rights reserved.
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -61,9 +61,6 @@
  */
 - (BOOL) application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {    
-    // Remove me after debugging
-    [NSClassFromString(@"WebView") _enableRemoteInspector];
-
     NSURL* url = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
     NSString* invokeString = nil;
     

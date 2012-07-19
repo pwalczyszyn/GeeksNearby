@@ -24,22 +24,20 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
-		<string>linkedin.com</string>
-		<string>facebook.com</string>
-		<string>twitter.com</string>
-		<string>api.parse.com</string>
-		<string>files.parse.com</string>
-		<string>api.geeksnearby.com</string>
 		<string>debug.phonegap.com</string>
+		<string>linkedin.com</string>
+		<string>twitter.com</string>
+		<string>facebook.com</string>
+		<string>files.parse.com</string>
+		<string>api.parse.com</string>
+		<string>api.geeksnearby.com</string>
 	</array>
 	<key>Plugins</key>
 	<dict>
+		<key>Device</key>
+		<string>CDVDevice</string>
 		<key>Logger</key>
 		<string>CDVLogger</string>
-		<key>Compass</key>
-		<string>CDVLocation</string>
-		<key>Accelerometer</key>
-		<string>CDVAccelerometer</string>
 		<key>Camera</key>
 		<string>CDVCamera</string>
 		<key>NetworkStatus</key>
@@ -48,22 +46,12 @@
 		<string>CDVContacts</string>
 		<key>Debug Console</key>
 		<string>CDVDebugConsole</string>
-		<key>File</key>
-		<string>CDVFile</string>
 		<key>FileTransfer</key>
 		<string>CDVFileTransfer</string>
 		<key>Geolocation</key>
 		<string>CDVLocation</string>
 		<key>Notification</key>
 		<string>CDVNotification</string>
-		<key>Media</key>
-		<string>CDVSound</string>
-		<key>Capture</key>
-		<string>CDVCapture</string>
-		<key>SplashScreen</key>
-		<string>CDVSplashScreen</string>
-		<key>Battery</key>
-		<string>CDVBattery</string>
 	</dict>
 </dict>
 </plist>

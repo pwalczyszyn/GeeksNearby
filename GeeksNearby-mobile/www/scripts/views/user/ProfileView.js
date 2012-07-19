@@ -6,8 +6,8 @@
  * Time: 11:06 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./ProfileView.tpl'],
-    function ($, _, Backbone, Parse, ProfileTemplate) {
+define(['jquery', 'underscore', 'Backbone', 'Parse', 'models/UserLocation', 'text!./ProfileView.tpl'],
+    function ($, _, Backbone, Parse, UserLocation, ProfileTemplate) {
 
         var RegisterView = Backbone.View.extend({
 
@@ -21,7 +21,8 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./ProfileView.tpl'],
                 'click #btnBack':'btnBack_clickHandler',
                 'click #btnLogOut':'btnLogOut_clickHandler',
                 'change input':'input_changeHandler',
-                'click #btnAddPhoto':'btnAddPhoto_clickHandler'
+                'click #btnAddPhoto':'btnAddPhoto_clickHandler',
+                'click #btnDeleteAccount':'btnDeleteAccount_clickHandler'
             },
 
             initialize:function (options) {
@@ -68,7 +69,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./ProfileView.tpl'],
                             $.mobile.jqmNavigator.popView();
                         },
                         error:function (user, error) {
-                            alert('Saving failed: ' + error.message);
+                            navigator.notification.alert('Saving failed: ' + error.message, null, 'Error');
                             $.mobile.jqmNavigator.popView();
                         }
                     });
@@ -100,7 +101,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./ProfileView.tpl'],
                                 that.avatarRef = {'name':decodedResponse.name, '__type':'File'};
                             },
                             function (error) {
-                                alert('Avatar upload failed: ' + error);
+                                navigator.notification.alert('Avatar upload failed: ' + error, null, 'Error');
                             }, options);
 
                     },
@@ -118,6 +119,49 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./ProfileView.tpl'],
                         MediaType:navigator.camera.MediaType.PICTURE
                     }
                 );
+            },
+
+            btnDeleteAccount_clickHandler:function (event) {
+
+                function deleteUser(buttonIndex) {
+                    if (buttonIndex == 1) {
+                        var user = Parse.User.current(),
+                            locsQuery = new Parse.Query(UserLocation),
+                            locsQuerySuccess = function (locs) {
+                                _.invoke(locs, 'destroy');
+
+                                if (locs.length > 0) {
+                                    locsQuery.find({success:locsQuerySuccess, error:locsQueryError});
+                                }
+                                else {
+                                    user.destroy({
+                                        success:function (user) {
+                                            $.mobile.jqmNavigator.popToFirst();
+                                        },
+                                        error:function (user, error) {
+                                            navigator.notification.alert('Something went wrong: ' + error.message, null, 'Error');
+                                        }
+                                    });
+                                }
+                            },
+                            locsQueryError = function (error) {
+                                navigator.notification.alert('Something went wrong: ' + error.message, null, 'Error');
+                            };
+
+                        var locsQuery = new Parse.Query(UserLocation);
+                        locsQuery.equalTo('user', user);
+                        locsQuery.find({success:locsQuerySuccess, error:locsQueryError});
+                    }
+                }
+
+                var message = "Do you want to delete your profile?";
+                if (navigator.notification.confirm) {
+                    navigator.notification.confirm(message, deleteUser, 'Delete a Geek?', 'Yes,No');
+                } else {
+                    var answer = confirm(message);
+                    if (answer) deleteUser(1);
+                }
+
             }
         });
 

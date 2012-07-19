@@ -50,11 +50,14 @@ require(['domReady', 'Parse', 'views/user/LoginView', 'jqm', 'overthrow'],
                 $.mobile.jqmNavigator.pushView(new LoginView());
             }
 
-            if (navigator.userAgent.match(/(iPad|iPhone|Android)/))
+            if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
                 document.addEventListener("deviceready", onDeviceReady, false);
-            else
-                onDeviceReady();
-
+            } else {
+                navigator.notification = {alert:function (message) {
+                    alert(message);
+                }};
+                onDeviceReady(true);
+            }
         });
     }
 );

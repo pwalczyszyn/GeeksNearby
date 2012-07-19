@@ -21,8 +21,8 @@
 //  AppDelegate.h
 //  GeeksNearby
 //
-//  Created by Piotr Walczyszyn on 7/16/12.
-//  Copyright pwalczys@adobe.com 2012. All rights reserved.
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

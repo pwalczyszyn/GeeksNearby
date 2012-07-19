@@ -1,5 +1,5 @@
 <div data-role="header" class="absolute">
-    <a class="btnBack" href="#" data-icon="back">Back</a>
+    <a id="btnBack" href="#" data-icon="back" data-iconpos="notext">Back</a>
 
     <h1>User Info</h1>
 </div>

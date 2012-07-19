@@ -1,5 +1,5 @@
 <div data-role="header" class="absolute">
-    <a id="btnBack" href="#" data-icon="back">Back</a>
+    <a id="btnBack" href="#" data-icon="back" data-iconpos="notext">Back</a>
 
     <h1>Geeky Info</h1>
 
@@ -55,9 +55,9 @@
         </div>
     </div>
 
-    <!--
+
     <br/>
     <button id="btnDeleteAccount" data-theme="r">Delete Geek Account</button>
-    -->
+
 </div>
 
