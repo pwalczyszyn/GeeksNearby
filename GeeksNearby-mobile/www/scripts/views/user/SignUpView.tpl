@@ -33,9 +33,12 @@
         </div>
         <div data-role="collapsible" data-iconpos="right" data-mini="true" data-content-theme="c">
             <h3>Social</h3>
-            <input type="text" id="txtTwitter" data-mini="true" placeholder="Twitter handle e.g. @you (optional)"/>
-            <input type="text" id="txtFacebook" data-mini="true" value="http://facebook.com/you"/>
-            <input type="text" id="txtLinkedIn" data-mini="true" value="http://linkedin.com/in/you"/>
+            <input type="url" id="txtTwitter" data-mini="true" value="http://twitter.com/@you"
+                   placeholder="Your Twitter page url (optional)"/>
+            <input type="url" id="txtFacebook" data-mini="true" value="http://facebook.com/you"
+                   placeholder="Your Facebook page url (optional)"/>
+            <input type="url" id="txtLinkedIn" data-mini="true" value="http://linkedin.com/in/you"
+                   placeholder="Your LinkedIn page url (optional)"/>
             <input type="url" id="txtWebsite" data-mini="true" placeholder="Website/Blog url (optional)"/>
         </div>
     </div>

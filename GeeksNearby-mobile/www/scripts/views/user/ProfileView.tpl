@@ -10,8 +10,7 @@
 
     <div style="display: inline-block; width: 90px">
         <div id="btnAddPhoto">
-            <img id="imgAvatar"
-                 src="<% if (user.has('avatar')) { %><%= user.get('avatar').url %> <% } else { %>images/avatar-light.png<% } %>"/>
+            <img id="imgAvatar" src="<% if (user.has('avatar')) { %><%= user.get('avatar').url %> <% } else { %>images/avatar-light.png<% } %>"/>
         </div>
     </div>
 
@@ -44,8 +43,8 @@
         <div data-role="collapsible" data-iconpos="right" data-mini="true" data-content-theme="c">
             <h3>Social</h3>
 
-            <input type="text" id="txtTwitter" name="twitter" data-mini="true" value="<%= user.escape('twitter') %>"
-                   placeholder="Twitter handle e.g. @you (optional)"/>
+            <input type="url" id="txtTwitter" name="twitter" data-mini="true" value="<%= user.escape('twitter') %>"
+                   placeholder="http://facebook.com/@you"/>
             <input type="url" id="txtFacebook" name="facebook" data-mini="true" value="<%= user.escape('facebook') %>"
                    placeholder="http://facebook.com/you"/>
             <input type="url" id="txtLinkedIn" name="linkedIn" data-mini="true" value="<%= user.escape('linkedIn') %>"

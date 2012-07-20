@@ -52,7 +52,7 @@
             <div class="ui-grid-b">
                 <div class="ui-block-a" style="text-align: center">
                     <% if (user.has('twitter') && user.get('twitter') !== '') { %>
-                    <a href="http://twitter.com/<%= user.escape('twitter') %>" target="_blank">
+                    <a href="<%= user.escape('twitter') %>" target="_blank">
                         <img src="images/twitter-logo.png"/>
                     </a>
                     <% } %>

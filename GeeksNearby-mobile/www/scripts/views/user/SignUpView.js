@@ -19,8 +19,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
                 'click #btnAddPhoto':'btnAddPhoto_clickHandler',
                 'focus #txtFacebook':'socialLinks_focusHandler',
                 'focus #txtLinkedIn':'socialLinks_focusHandler',
-                'focus #txtTwitter':'txtTwitter_focusHandler',
-                'blur #txtTwitter':'txtTwitter_blurHandler',
+                'focus #txtTwitter':'socialLinks_focusHandler',
                 'focus #txtWebsite':'txtWebsite_focusHandler',
                 'blur #txtWebsite':'txtWebsite_blurHandler'
             },
@@ -82,6 +81,7 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
                                 options.fileKey = 'file';
                                 options.fileName = that.imageURI.substr(that.imageURI.lastIndexOf('/') + 1);
                                 options.mimeType = 'image/jpeg';
+                                options.chunkedMode = false;
 
                                 options.params = {
                                     headers:{
@@ -161,7 +161,6 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
                         allowEdit:true,
                         targetWidth:80,
                         targetHeight:80,
-//                        saveToPhotoAlbum:true,
                         correctOrientation:true,
                         encodingType:navigator.camera.EncodingType.JPEG,
                         destinationType:navigator.camera.DestinationType.FILE_URI,
@@ -192,16 +191,6 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'text!./SignUpView.tpl'],
                         }
                     }
                 });
-            },
-
-            txtTwitter_focusHandler:function (event) {
-                var $field = $(event.currentTarget);
-                if ($field.val() === '') $field.val('@');
-            },
-
-            txtTwitter_blurHandler:function (event) {
-                var $field = $(event.currentTarget);
-                if ($field.val() === '@') $field.val(null);
             },
 
             txtWebsite_focusHandler:function (event) {
