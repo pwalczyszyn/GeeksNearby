@@ -6,8 +6,8 @@
  * Time: 10:45 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocation', 'views/user/ProfileView',
-        'views/user/UserInfoView', 'text!./HomeView.tpl'],
+define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocation', './ProfileView', './UserInfoView',
+        'text!./HomeView.tpl'],
     function ($, _, Backbone, Parse, moment, UserLocation, ProfileView, UserInfoView, HomeTemplate) {
 
         var HomeView = Backbone.View.extend({

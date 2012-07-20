@@ -32,30 +32,40 @@ require.config({
             exports:'Parse'
         },
         jqm:{
-            deps:['jquery', 'jqm-config', 'jqmNavigator']
+            deps:['jquery', 'jqm-config'/* jQM specific config */, 'jqmNavigator']
         },
         overthrow:{
             exports:'overthrow'
-        },
-        'date.format':{}
+        }
     }
 });
 
-require(['domReady', 'Parse', 'views/user/LoginView', 'jqm', 'overthrow'],
+require(['domReady', 'Parse', 'views/LoginView', 'jqm', 'overthrow'],
     function (domReady, Parse, LoginView) {
+
+        // domReady is RequireJS plugin that triggers when DOM is ready
         domReady(function () {
 
             function onDeviceReady() {
+
+                // Initializing Parse API's
                 Parse.initialize("DeE1IIk6SSWxDVAiywycW78jUBA4ZXXT1nZrFfoV", "QsKQMMV9tQLMiO9GfSh305qP6cy3gqfqCTSQyFEP");
+
+                // Pushing LoginView as a first view of the app
                 $.mobile.jqmNavigator.pushView(new LoginView());
+
             }
 
             if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
+                // This is running on a device so waiting for deviceready event
                 document.addEventListener("deviceready", onDeviceReady, false);
             } else {
+                // Polyfill for navigator.notification features to work in browser when debugging
                 navigator.notification = {alert:function (message) {
+                    // Using standard alert
                     alert(message);
                 }};
+                // On desktop don't have to wait for anything
                 onDeviceReady(true);
             }
         });

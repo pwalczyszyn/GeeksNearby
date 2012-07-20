@@ -6,7 +6,7 @@
  * Time: 11:43 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'Parse', './SignUpView', 'views/home/HomeView', 'text!./LoginView.tpl'],
+define(['jquery', 'underscore', 'Backbone', 'Parse', './SignUpView', './HomeView', 'text!./LoginView.tpl'],
     function ($, _, Backbone, Parse, SignUpView, HomeView, LoginTemplate) {
 
         var LoginView = Backbone.View.extend({
