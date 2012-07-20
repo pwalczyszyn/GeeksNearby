@@ -11,4 +11,8 @@
     <br/>
 
     <button id="btnLogIn" data-theme="g">Log In</button>
+
+    <div style="text-align: center; padding-top: 15px">
+        <img src="images/geek.png"/>
+    </div>
 </div>
