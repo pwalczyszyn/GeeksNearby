@@ -48,6 +48,10 @@ require(['domReady', 'Parse', 'views/LoginView', 'jqm', 'overthrow'],
 
             function onDeviceReady() {
 
+                // TODO: check if this works on Android
+                // Hiding splash screen
+                cordova.exec(null, null, "SplashScreen", "hide", []);
+
                 // Initializing Parse API's
                 Parse.initialize("DeE1IIk6SSWxDVAiywycW78jUBA4ZXXT1nZrFfoV", "QsKQMMV9tQLMiO9GfSh305qP6cy3gqfqCTSQyFEP");
 

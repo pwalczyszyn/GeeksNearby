@@ -17,8 +17,8 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
             events:{
                 'pageshow':'this_pageshowHandler',
                 'click #btnProfile':'btnProfile_clickHandler',
-                'click #btnRefresh':'btnRefresh_clickHandler',
-                'click #btnShareMyInfo':'btnShareMyInfo_clickHandler',
+                'vclick #btnRefresh':'btnRefresh_clickHandler',
+                'vclick #btnShareMyInfo':'btnShareMyInfo_clickHandler',
                 'click #lstUsersNearby li':'lstUsersNearbyLi_clickHandler'
             },
 

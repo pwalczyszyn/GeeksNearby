@@ -30,7 +30,7 @@ public class GeeksNearbyActivity extends DroidGap
     {
         super.onCreate(savedInstanceState);
         super.setIntegerProperty("splashscreen", R.drawable.splash);
-        super.loadUrl("file:///android_asset/www/index-android.html", 2000);
+        super.loadUrl("file:///android_asset/www/index-android.html", 5000);
     }
 }
 
