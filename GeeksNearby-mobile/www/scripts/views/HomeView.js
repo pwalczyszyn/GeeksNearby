@@ -32,24 +32,30 @@ define(['jquery', 'underscore', 'Backbone', 'Parse', 'moment', 'models/UserLocat
                 if (!this.pageShowed) {
                     this.pageShowed = true;
 
-                    this.findUsersNearby();
+                    var that = this;
+                    _.defer(function () {
+                        that.findUsersNearby();
+                    });
                 }
             },
 
             findUsersNearby:function (coords) {
                 var that = this;
                 if (!coords) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        that.findUsersNearby(position.coords);
-                    }, function (error) {
-                        navigator.notification.alert('Could\'t obtain your location please try again!', null, 'Error');
-                    });
+                    navigator.geolocation.getCurrentPosition(
+                        function (position) {
+                            that.findUsersNearby(position.coords);
+                        }, function (error) {
+                            navigator.notification.alert('Could\'t obtain your location please try again!', null, 'Error');
+                        },
+                        {maximumAge:3000, timeout:5000, enableHighAccuracy:true}
+                    );
                 } else {
 
                     var locQuery = new Parse.Query(UserLocation);
                     locQuery.withinKilometers('coords',
                         new Parse.GeoPoint({latitude:coords.latitude, longitude:coords.longitude}),
-                        0.05 // 50 meters range
+                        0.1 // 50 meters range
                     );
 
                     locQuery.include("user");

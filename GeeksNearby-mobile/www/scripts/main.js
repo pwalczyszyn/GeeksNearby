@@ -46,7 +46,10 @@ require(['domReady', 'Parse', 'views/LoginView', 'jqm', 'overthrow'],
         // domReady is RequireJS plugin that triggers when DOM is ready
         domReady(function () {
 
-            function onDeviceReady() {
+            function onDeviceReady(desktop) {
+
+                if (desktop !== true)
+                    cordova.exec(null, null, "SplashScreen", "hide", []);
 
                 // TODO: check if this works on Android
                 // Hiding splash screen
