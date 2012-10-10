@@ -71,6 +71,8 @@
     <access origin="http://twitter.com" subdomains="true"/>
     <access origin="http://twimg.com" subdomains="true"/>
 
+    <access origin="http://outof.me" subdomains="true"/>
+
     <!-- Using ChildBrowser plugin -->
     <gap:plugin name="ChildBrowser" />
 </widget>
