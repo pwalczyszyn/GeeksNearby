@@ -13,7 +13,8 @@ define(['jquery', 'underscore', 'Backbone', 'text!./UserInfoView.tpl'],
 
             events:{
                 'click #btnBack':'btnBack_clickHandler',
-                'click #btnAddToContacts':'btnAddToContacts_clickHandler'
+                'click #btnAddToContacts':'btnAddToContacts_clickHandler',
+                'click #btnWebsite, #btnLinkedIn, #btnFacebook, #btnTwitter':'btnWebsite_clickHandler'
             },
 
             render:function () {
@@ -92,6 +93,11 @@ define(['jquery', 'underscore', 'Backbone', 'text!./UserInfoView.tpl'],
 
                 navigator.notification.alert('Contact added!', null, 'Info');
 
+            },
+
+            btnWebsite_clickHandler:function (event) {
+                var propName = event.currentTarget.name;
+                window.plugins.childBrowser.showWebPage(this.model.get(propName));
             }
         });
 

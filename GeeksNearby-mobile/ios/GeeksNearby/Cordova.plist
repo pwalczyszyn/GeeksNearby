@@ -7,7 +7,7 @@
 	<key>TopActivityIndicator</key>
 	<string>gray</string>
 	<key>EnableLocation</key>
-	<false/>
+	<true/>
 	<key>EnableViewportScale</key>
 	<false/>
 	<key>AutoHideSplashScreen</key>
@@ -24,16 +24,21 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
+		<string>*.licdn.com</string>
+		<string>*.twimg.com</string>
+		<string>*.fbcdn.net</string>
 		<string>debug.phonegap.com</string>
-		<string>linkedin.com</string>
-		<string>twitter.com</string>
-		<string>facebook.com</string>
+		<string>*.linkedin.com</string>
+		<string>*.twitter.com</string>
+		<string>*.facebook.com</string>
 		<string>files.parse.com</string>
 		<string>api.parse.com</string>
 		<string>api.geeksnearby.com</string>
 	</array>
 	<key>Plugins</key>
 	<dict>
+		<key>ChildBrowserCommand</key>
+		<string>ChildBrowserCommand</string>
 		<key>Device</key>
 		<string>CDVDevice</string>
 		<key>Logger</key>

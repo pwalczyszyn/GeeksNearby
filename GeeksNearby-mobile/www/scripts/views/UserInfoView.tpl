@@ -52,21 +52,21 @@
             <div class="ui-grid-b">
                 <div class="ui-block-a" style="text-align: center">
                     <% if (user.has('twitter') && user.get('twitter') !== '') { %>
-                    <a href="<%= user.escape('twitter') %>" target="_blank">
+                    <a id="btnTwitter" href="#" name="twitter">
                         <img src="images/twitter-logo.png"/>
                     </a>
                     <% } %>
                 </div>
                 <div class="ui-block-b" style="text-align: center">
                     <% if (user.has('facebook') && user.get('facebook') !== '') { %>
-                    <a href="<%= user.escape('facebook') %>" target="_blank">
+                    <a id="btnFacebook" href="#" name="facebook">
                         <img src="images/facebook-logo.png"/>
                     </a>
                     <% } %>
                 </div>
                 <div class="ui-block-c" style="text-align: center">
                     <% if (user.has('linkedIn') && user.get('linkedIn') !== '') { %>
-                    <a href="<%= user.escape('linkedIn') %>" target="_blank">
+                    <a id="btnLinkedIn" href="#" name="linkedIn">
                         <img src="images/linkedIn-logo.png"/>
                     </a>
                     <% } %>
@@ -77,7 +77,8 @@
             <br/>
 
             <p>
-                <strong>Website/Blog: </strong> <a href="<%= user.escape('website') %>" target="_blank"><%=user.escape('website')%></a>
+                <strong>Website/Blog: </strong> <a id="btnWebsite" href="#"
+                                                   name="website"><%=user.escape('website')%></a>
             </p>
             <% } %>
 
