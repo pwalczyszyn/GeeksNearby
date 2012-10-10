@@ -61,10 +61,16 @@
     <access origin="http://api.parse.com"/>
     <access origin="http://files.parse.com"/>
     <access origin="http://api.geeksnearby.com"/>
-    <access origin="http://linkedin.com"/>
-    <access origin="http://facebook.com"/>
-    <access origin="http://twitter.com"/>
+
+    <access origin="http://linkedin.com" subdomains="true"/>
+    <access origin="http://licdn.com" subdomains="true"/>
+
+    <access origin="http://facebook.com" subdomains="true"/>
+    <access origin="http://fbcdn.net" subdomains="true"/>
+
+    <access origin="http://twitter.com" subdomains="true"/>
+    <access origin="http://twimg.com" subdomains="true"/>
 
     <!-- Using ChildBrowser plugin -->
-    <gap:plugin name="ChildBrowser" version="~3" />
+    <gap:plugin name="ChildBrowser" />
 </widget>
