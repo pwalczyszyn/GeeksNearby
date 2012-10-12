@@ -1,7 +1,7 @@
 .idea
 .DS_Store
-GeeksNearby-mobile/ios/build
-GeeksNearby-mobile/android/assets
-GeeksNearby-mobile/android/bin
-GeeksNearby-mobile/android/gen
-GeeksNearby-mobile/android/build
+platforms/ios/build
+platforms/android/assets
+platforms/android/bin
+platforms/android/gen
+platforms/android/build
